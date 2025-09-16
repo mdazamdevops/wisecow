@@ -84,10 +84,10 @@ Two Bash scripts were created to fulfill this requirement.
 ### Screenshots for Problem 2
 
 **Making the DevOps Scripts Executable**
-![Making Scripts Executable](https://github.com/mdazamdevops/wisecow/raw/main/Problem%20Statement%202/scripts/screenshots/Making%20the%20DevOps%20Scripts%20Executable.png)
+![Making Scripts Executable](https://github.com/mdazamdevops/wisecow/blob/main/screenshots/Making%20DevOps%20Scripts%20Executable.png)
 
 **Testing the Application Health Checker Script**
-![Testing the App Health Checker](https://github.com/mdazamdevops/wisecow/raw/main/Problem%20Statement%202/scripts/screenshots/Testing%20the%20Application%20Health%20Checker%20Script.png)
+![Testing the App Health Checker](https://github.com/mdazamdevops/wisecow/blob/main/screenshots/Testing%20the%20Application%20Health%20Checker%20Script.png)
 
 ---
 
