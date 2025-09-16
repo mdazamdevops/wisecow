@@ -128,13 +128,11 @@ To write and test a zero-trust KubeArmor policy to restrict unwanted behavior in
 ### Screenshots for Problem 3
 
 **Installing the KubeArmor CLI and Service**
-![Installing KubeArmor](https://github.com/mdazamdevops/wisecow/raw/main/Problem%20Statement%203/screenshots/Installing%20the%20KubeArmor%20CLI%20and%20Service.png)
+![Installing KubeArmor](https://github.com/mdazamdevops/wisecow/blob/main/screenshots/Installing%20the%20KubeArmor%20CLI%20and%20Service.png)
 
 **Applying and Verifying the KubeArmor Policy**
-![Applying KubeArmor Policy](https://github.com/mdazamdevops/wisecow/raw/main/Problem%20Statement%203/screenshots/Applying%20and%20Verifying%20the%20KubeArmor%20Policy.png)
+![Applying KubeArmor Policy](https://github.com/mdazamdevops/wisecow/blob/main/screenshots/Applying%20and%20Verifying%20the%20KubeArmor%20Policy.png)
 
-**Final Proof: Policy Violation and Logged Alert**
-![Policy Violation Proof](https://github.com/mdazamdevops/wisecow/raw/main/Problem%20Statement%203/screenshots/Final%20Proof%20Policy%20Violation%20and%20Logged%20Alert.png)
 ---
 
 ## Final Directory Structure
