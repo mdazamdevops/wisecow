@@ -2,30 +2,28 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: DockerHub login
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Log in to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build and Push image
-      run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/wisecow-app:latest .
-        docker push ${{ secrets.DOCKER_USERNAME }}/wisecow-app:latest
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/wisecow:latest .
 
-    - name: Setup kubectl
-      uses: azure/setup-kubectl@v3
+      - name: Push Docker image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/wisecow:latest
 
-    - name: Deploy to Kubernetes
-      run: |
-        kubectl apply -f k8s/
+      - name: Deploy to Kubernetes
+        run: kubectl apply -f k8s/
