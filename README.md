@@ -67,6 +67,9 @@ The goal was to containerize the Wisecow application, deploy it to a Kubernetes 
 **Accessing the Wisecow App via Port-Forward**
 ![Accessing the Wisecow App](https://github.com/mdazamdevops/wisecow/raw/main/screenshots/Accessing%20the%20Wisecow%20App%20via%20Port-Forward.png)
 
+**Successful CI/CD Pipeline Run**
+![Successful CI/CD Pipeline Run](https://github.com/mdazamdevops/wisecow/raw/main/screenshots/Ci-Cd%20Successfull.png)
+
 ---
 
 ## Problem Statement 2: DevOps Scripts
