@@ -17,6 +17,8 @@ The base application is a simple "Cow wisdom" web server from the original [wise
 
 * **Prerequisites**: `sudo apt install fortune-mod cowsay -y`
 * **How to use?**: Run `./wisecow.sh` and point a browser to the server port (default 4499).
+* **What to expect?**
+![wisecow](https://github.com/nyrahul/wisecow/assets/9133227/8d6bfde3-4a5a-480e-8d55-3fef60300d98)
 
 ---
 
@@ -87,10 +89,10 @@ Two Bash scripts were created to fulfill this requirement.
 ### Screenshots for Problem 2
 
 **Making the DevOps Scripts Executable**
-![Making Scripts Executable](https://github.com/mdazamdevops/wisecow/blob/main/screenshots/Making%20DevOps%20Scripts%20Executable.png)
+![Making Scripts Executable](https://github.com/mdazamdevops/wisecow/raw/main/screenshots/Making%20DevOps%20Scripts%20Executable.png)
 
 **Testing the Application Health Checker Script**
-![Testing the App Health Checker](https://github.com/mdazamdevops/wisecow/blob/main/screenshots/Testing%20the%20Application%20Health%20Checker%20Script.png)
+![Testing the App Health Checker](https://github.com/mdazamdevops/wisecow/raw/main/screenshots/Testing%20the%20Application%20Health%20Checker%20Script.png)
 
 ---
 
@@ -131,10 +133,10 @@ To write and test a zero-trust KubeArmor policy to restrict unwanted behavior in
 ### Screenshots for Problem 3
 
 **Installing the KubeArmor CLI and Service**
-![Installing KubeArmor](https://github.com/mdazamdevops/wisecow/blob/main/screenshots/Installing%20the%20KubeArmor%20CLI%20and%20Service.png)
+![Installing KubeArmor](https://github.com/mdazamdevops/wisecow/raw/main/screenshots/Installing%20the%20KubeArmor%20CLI%20and%20Service.png)
 
 **Applying and Verifying the KubeArmor Policy**
-![Applying KubeArmor Policy](https://github.com/mdazamdevops/wisecow/blob/main/screenshots/Applying%20and%20Verifying%20the%20KubeArmor%20Policy.png)
+![Applying KubeArmor Policy](https://github.com/mdazamdevops/wisecow/raw/main/screenshots/Applying%20and%20Verifying%20the%20KubeArmor%20Policy.png)
 
 ---
 
