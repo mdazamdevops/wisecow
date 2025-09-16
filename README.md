@@ -1,28 +1,177 @@
-# Cow wisdom web server
+# Accuknox DevOps Trainee - Practical Assessment Solution
 
-## Prerequisites
+This repository contains the complete solution for the practical assessment, which involves containerizing, deploying, and securing the "Wisecow" application.
 
+## Table of Contents
+1. [Original Wisecow Application](#original-wisecow-application)
+2. [Problem Statement 1: Kubernetes Deployment](#problem-statement-1-kubernetes-deployment)
+3. [Problem Statement 2: DevOps Scripts](#problem-statement-2-devops-scripts)
+4. [Problem Statement 3: KubeArmor Security Policy](#problem-statement-3-kubearmor-security-policy)
+5. [Final Directory Structure](#final-directory-structure)
+
+---
+
+## Original Wisecow Application
+
+The base application is a simple "Cow wisdom" web server. It can be run locally with the following prerequisites.
+
+* **Prerequisites**: `sudo apt install fortune-mod cowsay -y`
+* **How to use?**: Run `./wisecow.sh` and point a browser to the server port (default 4499).
+* **What to expect?**
+    ![wisecow](https://github.com/nyrahul/wisecow/assets/9133227/8d6bfde3-4a5a-480e-8d55-3fef60300d98)
+
+---
+
+## Problem Statement 1: Kubernetes Deployment
+
+### Objective
+The goal was to containerize the Wisecow application, deploy it to a Kubernetes environment, and implement a CI pipeline.
+
+### Solution Artifacts
+* **`Dockerfile`**: A `Dockerfile` that creates a lightweight Debian-based container for the application.
+* **Kubernetes Manifests (`/k8s`)**:
+    * `deployment.yaml`: Deploys the application with 2 replicas into the `wisecow` namespace.
+    * `service.yaml`: Exposes the pods internally via a ClusterIP service.
+    * `ingress.yaml`: Manages external access and is configured to request a TLS certificate.
+* **GitHub Actions (`/.github/workflows/`)**: A CI workflow that automatically builds and pushes the Docker image to a container registry on every push to the `main` branch.
+
+### How to Deploy and Verify
+1.  **Prerequisites**:
+    * A running Kubernetes cluster (e.g., Minikube, Kind).
+    * An Ingress controller (e.g., NGINX Ingress) installed.
+    * `kubectl` configured to your cluster.
+
+2.  **Create Namespace**:
+    ```shell
+    kubectl create namespace wisecow
+    ```
+
+3.  **Deploy the Application**:
+    ```shell
+    kubectl apply -f k8s/ -n wisecow
+    ```
+
+4.  **Verify the Deployment**:
+    ```shell
+    kubectl get pods -n wisecow
+    # You should see two 'wisecow-deployment-...' pods in the 'Running' state.
+    ```
+
+5.  **Access the Application**:
+    * To access the Ingress host `wisecow.local`, map it to your cluster's IP (usually `127.0.0.1` for local setups) in your `/etc/hosts` file.
+        ```
+        # Add this line to /etc/hosts
+        127.0.0.1   wisecow.local
+        ```
+    * Open your browser and navigate to **`http://wisecow.local`**.
+
+### Screenshots for Problem 1
+
+**Building and Pushing the Docker Image**
+![Building and Pushing Docker Image](./screenshots/Pasted%20image.png)
+
+**Deploying the Wisecow Application to Kubernetes**
+![Deploying Wisecow to Kubernetes](./screenshots/Pasted%20image%20(2).png)
+
+**Troubleshooting a Port-Forward Conflict**
+![Troubleshooting Port-Forward Conflict](./screenshots/Pasted%20image%20(3).png)
+
+**Accessing the Wisecow App via Port-Forward**
+![Accessing the Wisecow App](./screenshots/Pasted%20image%20(4).png)
+
+---
+
+## Problem Statement 2: DevOps Scripts
+
+Two Bash scripts were created to fulfill this requirement.
+
+* **System Health Monitor (`/Problem Statement 2/scripts/system_health_monitor.sh`)**
+    * **Description**: Monitors CPU, memory, and disk usage, printing an alert if they exceed predefined thresholds.
+    * **Usage**: `chmod +x "Problem Statement 2/scripts/system_health_monitor.sh"` and then run `./"Problem Statement 2/scripts/system_health_monitor.sh"`
+
+* **Application Health Checker (`/Problem Statement 2/scripts/app_health_checker.sh`)**
+    * **Description**: Checks an application's uptime by analyzing its HTTP status code.
+    * **Usage**: `chmod +x "Problem Statement 2/scripts/app_health_checker.sh"` and then run `./"Problem Statement 2/scripts/app_health_checker.sh" http://wisecow.local`
+
+### Screenshots for Problem 2
+
+**Making the DevOps Scripts Executable**
+![Making Scripts Executable](./Problem%20Statement%202/scripts/screenshots/Pasted%20image%20(5).png)
+
+**Testing the Application Health Checker Script**
+![Testing the App Health Checker](./Problem%20Statement%202/scripts/screenshots/Pasted%20image%20(6).png)
+
+---
+
+## Problem Statement 3: KubeArmor Security Policy
+
+### Objective
+To write and test a zero-trust KubeArmor policy to restrict unwanted behavior in the `wisecow` pods.
+
+### Policy Details
+* **File**: `/Problem Statement 3/kubearmor-policy-wisecow.yaml`
+* **Description**: A KubeArmor policy that applies to pods labeled `app: wisecow` in the `wisecow` namespace. It is configured with `action: Block` to prevent execution of shells, package managers, and the `/bin/sleep` command.
+
+### How to Test the Policy
+1.  **Prerequisites**: KubeArmor must be installed in the cluster.
+
+2.  **Apply the Policy**:
+    ```shell
+    kubectl apply -f "Problem Statement 3/kubearmor-policy-wisecow.yaml" -n wisecow
+    ```
+
+3.  **Trigger a Violation**:
+    ```shell
+    # Get a pod name
+    POD=$(kubectl get pods -n wisecow -l app=wisecow -o jsonpath='{.items[0].metadata.name}')
+    
+    # Attempt to run the blocked command
+    kubectl exec -n wisecow -it $POD -- sleep 10
+    ```
+    This command will fail with a **`Permission denied`** error.
+
+4.  **Check Violation Logs**:
+    In a separate terminal, view the live security alerts from KubeArmor.
+    ```shell
+    karmor logs
+    ```
+    A log entry with `"result":"Blocked"` will appear, confirming the policy worked.
+
+### Screenshots for Problem 3
+
+**Installing the KubeArmor CLI and Service**
+![Installing KubeArmor](./Problem%20Statement%203/screenshots/Pasted%20image%20(7).png)
+
+**Verifying KubeArmor and Application Pods are Running**
+![Verifying Pods](./Problem%20Statement%203/screenshots/Pasted%20image%20(8).png)
+
+**Applying and Verifying the KubeArmor Policy**
+![Applying KubeArmor Policy](./Problem%20Statement%203/screenshots/Pasted%20image%20(10).jpg)
+
+**Monitoring for KubeArmor Alerts with karmor logs**
+![Monitoring for Alerts](./Problem%20Statement%203/screenshots/Pasted%20image%20(13).png)
+
+**Final Proof: Policy Violation and Logged Alert**
+![Policy Violation Proof](./Problem%20Statement%203/screenshots/your-final-violation-screenshot.png)
+
+---
+
+## Final Directory Structure
 ```
-sudo apt install fortune-mod cowsay -y
+.
+├── Dockerfile
+├── k8s
+│   ├── deployment.yaml
+│   ├── ingress.yaml
+│   └── service.yaml
+├── LICENSE
+├── Problem Statement 2
+│   └── scripts
+│       ├── app_health_checker.sh
+│       └── system_health_monitor.sh
+├── Problem Statement 3
+│   ├── kubearmor-policy-wisecow.yaml
+│   └── screenshots
+│       └── ...
+└── wisecow.sh
 ```
-
-## How to use?
-
-1. Run `./wisecow.sh`
-2. Point the browser to server port (default 4499)
-
-## What to expect?
-![wisecow](https://github.com/nyrahul/wisecow/assets/9133227/8d6bfde3-4a5a-480e-8d55-3fef60300d98)
-
-# Problem Statement
-Deploy the wisecow application as a k8s app
-
-## Requirement
-1. Create Dockerfile for the image and corresponding k8s manifest to deploy in k8s env. The wisecow service should be exposed as k8s service.
-2. Github action for creating new image when changes are made to this repo
-3. [Challenge goal]: Enable secure TLS communication for the wisecow app.
-
-## Expected Artifacts
-1. Github repo containing the app with corresponding dockerfile, k8s manifest, any other artifacts needed.
-2. Github repo with corresponding github action.
-3. Github repo should be kept private and the access should be enabled for following github IDs: nyrahul

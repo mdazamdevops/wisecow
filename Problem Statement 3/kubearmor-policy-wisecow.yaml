@@ -1,0 +1,25 @@
+apiVersion: security.kubearmor.com/v1
+kind: KubeArmorPolicy
+metadata:
+  name: wisecow-zero-trust
+  namespace: wisecow
+spec:
+  severity: 8
+  message: "Zero-trust: block dangerous exec and sensitive file access for wisecow"
+  selector:
+    matchLabels:
+      app: wisecow
+  # This MUST be set to Block for enforcement
+  action: Block
+
+  process:
+    matchPaths:
+      # This MUST be in the list to block the 'sleep' command
+      - path: /bin/sleep
+      - path: /usr/bin/apt
+      - path: /usr/bin/apt-get
+      - path: /usr/bin/wget
+      - path: /usr/bin/curl
+      - path: /usr/bin/rsync
+      - path: /bin/bash
+      - path: /bin/sh
