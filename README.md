@@ -135,7 +135,6 @@ To write and test a zero-trust KubeArmor policy to restrict unwanted behavior in
 
 **Final Proof: Policy Violation and Logged Alert**
 ![Policy Violation Proof](https://github.com/mdazamdevops/wisecow/raw/main/Problem%20Statement%203/screenshots/Final%20Proof%20Policy%20Violation%20and%20Logged%20Alert.png)
-
 ---
 
 ## Final Directory Structure
