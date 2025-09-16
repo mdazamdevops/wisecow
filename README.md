@@ -56,16 +56,16 @@ The goal was to containerize the Wisecow application, deploy it to a Kubernetes 
 ### Screenshots for Problem 1
 
 **Building and Pushing the Docker Image**
-![Building and Pushing Docker Image](./screenshots/01-docker-build-push.png)
+![Building and Pushing Docker Image](https://github.com/mdazamdevops/wisecow/raw/main/screenshots/Building%20and%20Pushing%20the%20Docker%20Image.png)
 
 **Deploying the Wisecow Application to Kubernetes**
-![Deploying Wisecow to Kubernetes](./screenshots/02-deploying-to-kubernetes.png)
+![Deploying Wisecow to Kubernetes](https://github.com/mdazamdevops/wisecow/raw/main/screenshots/Deploying%20the%20Wisecow%20Application%20to%20Kubernetes.png)
 
 **Troubleshooting a Port-Forward Conflict**
-![Troubleshooting Port-Forward Conflict](./screenshots/03-troubleshooting-port-forward.png)
+![Troubleshooting Port-Forward Conflict](https://github.com/mdazamdevops/wisecow/raw/main/screenshots/Troubleshooting%20a%20Port-Forward%20Conflict.png)
 
 **Accessing the Wisecow App via Port-Forward**
-![Accessing the Wisecow App](./screenshots/04-accessing-the-app.png)
+![Accessing the Wisecow App](https://github.com/mdazamdevops/wisecow/raw/main/screenshots/Accessing%20the%20Wisecow%20App%20via%20Port-Forward.png)
 
 ---
 
@@ -84,10 +84,10 @@ Two Bash scripts were created to fulfill this requirement.
 ### Screenshots for Problem 2
 
 **Making the DevOps Scripts Executable**
-![Making Scripts Executable](./Problem%20Statement%202/scripts/screenshots/05-making-scripts-executable.png)
+![Making Scripts Executable](https://github.com/mdazamdevops/wisecow/raw/main/Problem%20Statement%202/scripts/screenshots/Making%20the%20DevOps%20Scripts%20Executable.png)
 
 **Testing the Application Health Checker Script**
-![Testing the App Health Checker](./Problem%20Statement%202/scripts/screenshots/06-testing-health-checker.png)
+![Testing the App Health Checker](https://github.com/mdazamdevops/wisecow/raw/main/Problem%20Statement%202/scripts/screenshots/Testing%20the%20Application%20Health%20Checker%20Script.png)
 
 ---
 
@@ -128,13 +128,13 @@ To write and test a zero-trust KubeArmor policy to restrict unwanted behavior in
 ### Screenshots for Problem 3
 
 **Installing the KubeArmor CLI and Service**
-![Installing KubeArmor](./Problem%20Statement%203/screenshots/07-installing-kubearmor.png)
+![Installing KubeArmor](https://github.com/mdazamdevops/wisecow/raw/main/Problem%20Statement%203/screenshots/Installing%20the%20KubeArmor%20CLI%20and%20Service.png)
 
 **Applying and Verifying the KubeArmor Policy**
-![Applying KubeArmor Policy](./Problem%20Statement%203/screenshots/08-applying-kubearmor-policy.png)
+![Applying KubeArmor Policy](https://github.com/mdazamdevops/wisecow/raw/main/Problem%20Statement%203/screenshots/Applying%20and%20Verifying%20the%20KubeArmor%20Policy.png)
 
 **Final Proof: Policy Violation and Logged Alert**
-![Policy Violation Proof](./Problem%20Statement%203/screenshots/09-policy-violation-proof.png)
+![Policy Violation Proof](https://github.com/mdazamdevops/wisecow/raw/main/Problem%20Statement%203/screenshots/Final%20Proof%20Policy%20Violation%20and%20Logged%20Alert.png)
 
 ---
 
